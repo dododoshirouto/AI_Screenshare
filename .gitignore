@@ -1,3 +1,6 @@
+.vscode
+.vscode/*
+
 # APIキーが入ってる環境変数ファイル
 /.env
 
