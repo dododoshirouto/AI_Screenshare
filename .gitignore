@@ -1,6 +1,8 @@
 .vscode
 .vscode/*
 
+/TODO.md
+
 # APIキーが入ってる環境変数ファイル
 /.env
 
