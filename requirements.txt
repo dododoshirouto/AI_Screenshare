@@ -12,7 +12,5 @@ pillow
 win10toast
 
 # voicevox
-# nvidia-cuda-runtime-cu11
-# https://github.com/VOICEVOX/voicevox_core/releases/download/0.15.4/voicevox_core-0.15.4+cuda-cp38-abi3-win_amd64.whl
 https://github.com/VOICEVOX/voicevox_core/releases/download/0.15.4/voicevox_core-0.15.4+cpu-cp38-abi3-win_amd64.whl
 pyaudio
