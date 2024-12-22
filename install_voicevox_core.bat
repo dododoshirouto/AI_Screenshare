@@ -1,0 +1,1 @@
+voicevox-download-windows-x64.exe -v 0.15.4 -o ./

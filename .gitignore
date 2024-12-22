@@ -1,0 +1,32 @@
+# APIキーが入ってる環境変数ファイル
+/.env
+
+# 仮想環境
+/venv
+
+# 実行ファイル
+/Builds
+/Builds/*
+
+# スクショの一時保存ファイル
+/captures/*
+
+# voicevox
+/model
+/model/*
+/open_jtalk_dic_utf_8-1.11
+/open_jtalk_dic_utf_8-1.11/*
+/onnxruntime*
+/voicevox_core*
+/VERSION
+
+# ###############################################################
+# https://github.com/github/gitignore/blob/main/Python.gitignore
+# ###############################################################
+
+*.log
+__pycache__/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
