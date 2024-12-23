@@ -3,7 +3,7 @@ import os
 
 
 class UserSettingGUI:
-    def __init__(self, openai_api_key: str):
+    def __init__(self, openai_api_key: str=""):
         self.openai_api_key: str = openai_api_key
         pass
 
