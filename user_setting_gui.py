@@ -41,7 +41,13 @@ class UserSettingGUI:
 
 
     def update_dotenv_file(self, key:str, value:str):
+        # もし.envファイルが存在しない場合は作成
+        if not os.path.exists('.env'):
+            with open('.env', 'w') as file:
+                file.write("")
+
         key_exists = False
+        # .envファイルを開く
         with open('.env', 'r') as file:
             lines = file.readlines()
             for line in lines:
@@ -49,6 +55,7 @@ class UserSettingGUI:
                     key_exists = True
                     break
         
+        # .envファイルを更新
         with open('.env', 'w') as file:
             for line in lines:
                 if line.startswith(f"{key}="):
@@ -56,6 +63,7 @@ class UserSettingGUI:
                 else:
                     file.write(line)
             
+            # 新しいキーを追加
             if not key_exists:
                 file.write(f"\n{key}={value}\n")
 
