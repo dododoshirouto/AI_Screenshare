@@ -6,7 +6,12 @@ import time
 import sys
 from func import Logger
 
+from user_setting_gui import UserSettingGUI
+from main import API_KEY
+
 logger = Logger("TaskTray", enable=True)
+
+setting_gui = UserSettingGUI(API_KEY)
 
 class TaskTray:
     def __init__(self):
@@ -24,13 +29,17 @@ class TaskTray:
         self.set_menu()
         self.icon.run()
 
+    def menu_on_open_settings(self):
+        setting_gui.open()
+
     def menu_on_exit(self):
         self.icon.stop()
         self.active = False
     
     def set_menu(self):
         self.icon.menu = pystray.Menu(
-            pystray.MenuItem("Exit", self.menu_on_exit)
+            pystray.MenuItem("Settings", self.menu_on_open_settings),
+            pystray.MenuItem("Exit", self.menu_on_exit),
         )
 
     def set_icon(self):

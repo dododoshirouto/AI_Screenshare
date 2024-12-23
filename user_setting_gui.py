@@ -5,37 +5,52 @@ import os
 class UserSettingGUI:
     def __init__(self, openai_api_key: str=""):
         self.openai_api_key: str = openai_api_key
+        # 他の関数とかでも使うfletパーツ
+        self.f_api_key: flet.TextField
+        self.f_alert_text: flet.Text
+        pass
+
+    def open(self):
+        flet.app(target=self.create_user_setting_gui)
         pass
 
     def create_user_setting_gui(self, page: flet.Page):
-        page.add(flet.Text("OpenAI API Key"))
-        self.f_api_key = flet.TextField(value=self.openai_api_key, password=True)
-        page.add(self.f_api_key)
+        page.title = "User Settings - DODO Screen AI"
 
-        def toggle_password(e):
+        def toggle_password(_):
             self.f_api_key.password = not self.f_api_key.password
             self.f_api_key.update()
+            pass
 
+        def on_save_and_close(_):
+            print(self.f_api_key.value)
+            self.openai_api_key = self.f_api_key.value or ""
+            self.update_dotenv_file("OPENAI_API_KEY", self.openai_api_key)
+            page.window.close()
+            exit()
+            pass
+
+        def on_close(_):
+            page.window.close()
+            pass
+
+        # set public flet fields
+        self.f_api_key = flet.TextField(value=self.openai_api_key, password=True)
+        self.f_alert_text = flet.Text("")
+        # add flet parts
+        page.add(flet.Text("OpenAI API Key"))
+        page.add(self.f_api_key)
         page.add(flet.Button("Show API Key", on_click=toggle_password))
-        page.add(flet.Button("Save", on_click=self.on_save_user_setting))
-        pass
-
-    def update_user_setting_gui(self, page: flet.Page):
+        page.add(flet.Button("Save and Close", on_click=on_save_and_close))
+        page.add(flet.Button("Cancel", on_click=on_close))
+        page.add(self.f_alert_text)
         pass
 
     def create_debug_gui(self, page: flet.Page):
         pass
 
-    def update_debug_gui(self, page: flet.Page):
-        pass
-
-    def on_save_user_setting(self, e):
-        print(self.f_api_key.value)
-        self.openai_api_key = self.f_api_key.value or ""
-        self.update_dotenv_file("OPENAI_API_KEY", self.openai_api_key)
-        pass
-
-    def update_dotenv_file(self, key: str, value: str):
+    @staticmethod
+    def update_dotenv_file(key: str, value: str):
         # もし.envファイルが存在しない場合は作成
         if not os.path.exists(".env"):
             with open(".env", "w") as file:
@@ -66,6 +81,4 @@ class UserSettingGUI:
 if __name__ == "__main__":
 
     setting = UserSettingGUI("")
-    flet.app(target=setting.create_user_setting_gui)
-
-    setting.update_dotenv_file("test", "asdfads")
+    setting.open()

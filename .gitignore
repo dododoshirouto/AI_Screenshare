@@ -5,6 +5,7 @@
 
 # APIキーが入ってる環境変数ファイル
 /.env
+/.env.backup
 
 # 仮想環境
 /venv

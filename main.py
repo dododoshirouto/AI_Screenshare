@@ -2,7 +2,6 @@
 from screen_capture import ScreenCapture
 from image_diff_analyzer import ImageDiffAnalyzer
 from image_send_gpt import ImageSendGPT
-from tasktray import TaskTray
 from voicevox_yomiage import VoicevoxYomiage, VV_Speaker
 
 from dotenv import load_dotenv
@@ -33,14 +32,17 @@ logger = Logger("main")
 # TODO: 最初期化に必要なものをinit関数にまとめる
 capture = ScreenCapture()
 analyzer = ImageDiffAnalyzer()
-tasktray = TaskTray()
 vv = VoicevoxYomiage(speaker_id=VOICEVOX_SPEAKER.value, speed=VOICEVOX_SPEED)
+
 
 API_KEY = os.getenv("OPENAI_API_KEY") or "your-openai-api-key-here"
 gpt = ImageSendGPT(api_key=API_KEY, zundamon=AI_MODE_ZUNDAMON)
 imgs_queue = queue.Queue()
 ai_capture_interval: float = 0
 last_capture_time: float = 0
+
+from tasktray import TaskTray
+tasktray = TaskTray()
 
 
 def main():
