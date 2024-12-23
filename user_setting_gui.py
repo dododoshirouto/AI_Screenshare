@@ -1,9 +1,5 @@
 import flet
 import os
-from dotenv import load_dotenv
-
-
-load_dotenv()
 
 
 class UserSettingGUI:
@@ -36,7 +32,6 @@ class UserSettingGUI:
     def on_save_user_setting(self, e):
         print(self.f_api_key.value)
         self.openai_api_key = self.f_api_key.value or ""
-        os.environ["OPENAI_API_KEY"] = self.openai_api_key
         self.update_dotenv_file("OPENAI_API_KEY", self.openai_api_key)
         pass
 
