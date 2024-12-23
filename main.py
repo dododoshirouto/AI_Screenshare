@@ -36,7 +36,7 @@ analyzer = ImageDiffAnalyzer()
 tasktray = TaskTray()
 vv = VoicevoxYomiage(speaker_id=VOICEVOX_SPEAKER.value, speed=VOICEVOX_SPEED)
 
-API_KEY = os.getenv("OPENAI_API_KEY")
+API_KEY = os.getenv("OPENAI_API_KEY") or "your-openai-api-key-here"
 gpt = ImageSendGPT(api_key=API_KEY, zundamon=AI_MODE_ZUNDAMON)
 imgs_queue = queue.Queue()
 ai_capture_interval: float = 0
